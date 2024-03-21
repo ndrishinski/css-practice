@@ -29,26 +29,50 @@ header .right {
 
 @keyframes slideLeft {
   0% {
-    transform: translate(-150px, 0px);
-    /* animation-timing-function:ease-in-out; */
+    transform: translateX(-100%);
   }
-
   100% {
-      transform: translate(0px, 0px);
-      /* animation-timing-function:ease-in-out; */
+    transform: translateX(0%);
   }
 }
 
 @keyframes slideRight {
   0% {
-    transform: translate(350px, 0px);
-    /* animation-timing-function:ease-in-out; */
+    transform: translateX(100%);
   }
-
   100% {
-      transform: translate(0px, 0px);
-      /* animation-timing-function:ease-in-out; */
+    transform: translateX(0%);
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* Apply animations to respective elements */
+.g-logo,
+.search-form,
+.buttons,
+.top-footer {
+  animation: fadeIn 2s;
+}
+
+.bottom-footer {
+  animation: slideUp 2s;
 }
 
 header .left p {
