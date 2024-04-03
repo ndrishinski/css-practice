@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Announcement Bar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        color: #fff;
+      }
+
+      div {
+        height: 30px;
+        background: linear-gradient(to right,#d9c8eb, #7e45b6, #d9c8eb);
+        width: 100%;
+        transition: height .7s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+
+        50% {
+          opacity: .5;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      div:hover {
+        height: 70px;
+        cursor: pointer;
+        .addition-info {
+          animation: fadeIn 1s;
+          display: block;
+          animation-fill-mode: both;
+        }
+      }
+
+      .addition-info {
+        display: none;
+        opacity: 0;
+        font-size: 12px;
+      }
+
+      span {
+        text-decoration: underline;
+      }
+
+      p {
+        margin: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Free Shipping on Orders over $50*</p>
+      <p class="addition-info">Valid for orders in the continental US. <span>Learn More.</span></p>
+    </div>
+  </body>
+</html>
