@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title> 
+		Easing
+	</title> 
+
+	<style> 
+		.bar1 { 
+			width: 10%; 
+			height: 40px; 
+			margin: 2%; 
+			border: solid; 
+			background: blue; 
+			animation: play 2s infinite; 
+		} 
+
+		.bar2 { 
+			width: 10%; 
+			height: 40px; 
+			margin: 2%; 
+			background: green; 
+			border: solid; 
+			animation: play 2s ease-in infinite; 
+		} 
+
+		@keyframes play { 
+			100% { 
+				width: 90% 
+			} 
+		} 
+	</style> 
+</head> 
+
+<body> 
+	<h1 style="color:green;"> 
+		Nick 
+	</h1> 
+
+	
+	<div class="bar1"></div> 
+	<div class="bar2"></div> 
+</body> 
+
+</html> 
