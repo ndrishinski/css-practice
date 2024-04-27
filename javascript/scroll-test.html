@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Scroll to Top Animation Example</title>
+  <style type="text/css">
+    body {
+      padding: 45px;
+      background-color: #F3F3F3;
+    }
+
+    p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+      line-height: 40px;
+      padding: 30px;
+      margin-right: 60px;
+      color: #333333;
+    }
+
+    h1 {
+      text-transform: capitalize;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      font-size: 48px;
+      padding: 10px;
+      margin: 0px;
+      background-color: #CCFF33;
+      color: #333333;
+    }
+
+    #floatie {
+      position: fixed;
+      bottom: 0px;
+      right: 53px;
+      background-color: #FFFF00;
+      width: 50px;
+      height: 50px;
+      border: 2px #FF9900 solid;
+      font-weight: bold;
+      font-size: 48px;
+      text-align: center;
+      padding-top: 10px;
+      border-radius: 4px;
+      transition: transform .2s cubic-bezier(.59, -0.54, .72, 1.59);
+      transform: translate(0px, 10px);
+      box-shadow: 0 0 10px 0 #666;
+    }
+
+    #floatie:hover {
+      background-color: #CCFF33;
+      border-color: #669900;
+      cursor: pointer;
+      transform: translate(0px, 4px);
+    }
+
+    .centerImage {
+      text-align: center;
+    }
+
+    .image-container {
+      width: 320px;
+      overflow: hidden;
+    }
+
+    .image-itself:hover {
+      transform: translate3d(-6000px, 0, 0);
+      transition: transform 1.5s ease-in;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="floatie">
+    ^
+  </div>
+  <h1>Some Random Content</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id lectus
+    auctor, laoreet ante non, blandit magna. Aenean molestie dolor urna, id viverra
+    diam dictum ac. Nulla facilisi. Maecenas sit amet facilisis ante. Pellentesque
+    dignissim sed nibh sit amet iaculis. Sed convallis laoreet lorem eu euismod.
+    Pellentesque sagittis, neque in blandit consectetur, leo nisl luctus nisi, vel
+    volutpat neque lacus vel risus. Nam et tellus sed erat aliquam bibendum a in
+    massa. Vivamus consequat dui nec neque feugiat molestie. Quisque eu leo at dui
+    sodales bibendum. Nullam eget velit quis enim lobortis ultrices vel facilisis
+    nibh.</p>
+    <div class="image-container">
+      <img class="image-itself" alt="something" src="https://www.kirupa.com/images/sprites_final.png">
+    </div>
+  <p>Phasellus viverra nibh sed mi iaculis lacinia. Nullam quis risus
+    tellus. Cras condimentum eleifend augue, a pellentesque tellus fermentum in.
+    Fusce laoreet nulla vel enim mattis, ut molestie augue fringilla. Vestibulum
+    lobortis eros velit, nec porttitor lorem tempus nec. Aliquam rutrum, tortor in
+    elementum mollis, arcu ante consequat nunc, at dapibus velit ligula sed arcu.
+    Proin euismod odio sed augue sagittis, sodales sollicitudin risus facilisis.
+    Fusce lorem ante, volutpat et ligula nec, sodales aliquam turpis.<br><br>
+    Vestibulum rutrum urna sed ante venenatis placerat ac ac magna. Duis congue orci
+    eget venenatis lacinia. Mauris dignissim nibh ut sodales tincidunt. Aliquam erat
+    volutpat. Nullam congue commodo consectetur. Aenean posuere laoreet sodales.
+    Aenean tempor, sem in vehicula commodo, enim nisl tempor nibh, non interdum
+    purus sapien sed tortor. Cras volutpat vulputate rutrum. Phasellus vel dui sed
+    velit dignissim faucibus id et sem. Duis nisi sapien, lacinia at mi non,
+    scelerisque bibendum arcu. Class aptent taciti sociosqu ad litora torquent per
+    conubia nostra, per inceptos himenaeos. Ut faucibus in risus eget dignissim.
+    Nulla condimentum nisl blandit ante gravida, convallis scelerisque ante aliquet.
+    Etiam urna augue, condimentum at sem quis, adipiscing dapibus arcu.<br><br>
+    Pellentesque varius sapien ut auctor ultricies. Vivamus et pretium justo, eu
+    aliquet risus. Nulla gravida nulla non ante elementum viverra. Vestibulum vitae
+    viverra metus. Duis tellus orci, mattis vel ornare in, rutrum nec turpis. Mauris
+    tempor, diam sit amet pellentesque suscipit, erat neque ornare nulla, in porta
+    neque sapien ac nibh. Etiam non ullamcorper mi. Aliquam sit amet tortor vitae
+    orci vulputate feugiat vitae eget risus. Maecenas cursus ut justo ut ultricies.
+    Fusce dictum dictum lorem, eget placerat leo bibendum in. Sed facilisis mi nibh,
+    a dictum diam viverra sit amet. Mauris sapien sapien, tincidunt ac lobortis sit
+    amet, condimentum ut sem. Etiam a metus sed odio fringilla vestibulum.<br><br>
+    Proin eu lobortis sem. Nullam magna leo, varius ut quam ac, posuere feugiat
+    justo. Maecenas porta est urna, quis euismod felis auctor non. Praesent sit amet
+    elit id dolor volutpat malesuada. Nam non lorem non leo accumsan elementum.
+    Nulla vitae nulla in lorem ultrices aliquet. Maecenas in lobortis tortor. Ut
+    dapibus cursus luctus. Proin sit amet nisi in augue semper hendrerit. Duis
+    rhoncus vehicula ligula ut fringilla. Suspendisse id nulla pretium, imperdiet
+    odio at, convallis tellus.</p>
+  <p><a href="#" target="_parent">Return to Home</a>.</p>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('#floatie').addEventListener('click', function() {
+        window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
+
+      })
+    })
+  </script>
+
+</body>
+
+</html>
