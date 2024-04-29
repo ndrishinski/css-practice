@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   
-<script src="https://kirupa.googlecode.com/svn/trunk/easing.js"></script>
+
 <head>
   <title>Simple Canvas Example</title>
   <style>
@@ -18,6 +18,14 @@
   </div>
       
   <script>
+
+function easeInOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
+	if ((currentIteration /= totalIterations / 2) < 1) {
+      return changeInValue / 2 * Math.pow(2, 10 * (currentIteration - 1)) + startValue;
+    }
+    return changeInValue / 2 * (-Math.pow(2, -10 * --currentIteration) + 2) + startValue;
+  }
+
     var mainCanvas = document.getElementById("myCanvas");
     var mainContext = mainCanvas.getContext('2d');
 
@@ -33,8 +41,6 @@
     var totalIterations = 200;
     var easingValue;
 
-    var moveRight = true;
-
     function drawCircle() {
       mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
@@ -45,30 +51,26 @@
       // draw the circle
       mainContext.beginPath();
 
+      easingValue = easeInOutExpo(iteration, -100, 650, totalIterations);
+
       var radius = 100;
 
-      if (moveRight) {
-        easingValue = easeInOutExpo(iteration, -100, 650, totalIterations);
-      } else {
-        easingValue = easeInExpo(iteration, 650, -750, totalIterations);
-      }
-
-      mainContext.arc(easingValue, 225, radius, 0, Math.PI * 2, false);
+      mainContext.arc(easingValue, 225, 100, 0, Math.PI * 2, false);
       mainContext.closePath();
 
       // color in the circle
       mainContext.fillStyle = "#006699";
       mainContext.fill();
 
-      if (iteration < totalIterations) {
-        iteration++;
-      } else {
-        iteration = 0;
-        moveRight = !moveRight;
-      }
-
       requestAnimationFrame(drawCircle);
+
+      if (iteration < totalIterations) {
+          iteration++;
+      } else {
+          iteration = 0;
+      }
     }
+    drawCircle();
   </script>
    
 </body>
