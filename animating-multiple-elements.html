@@ -1,61 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Animate Multiple Elements</title>
-  <style>
-    .circle {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background-color: none;
-      border: #FFF 10px solid;
-      display: "inline-block";
-      position: absolute;
-    }
-
-    #mainContainer {
-      background-color: #CC6666;
-      width: 550px;
-      height: 350px;
-    }
-  </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var circles = document.querySelectorAll(".circle");
-
-      for (var i = 0; i < 5; i++) {
-        var circle = circles[i];
-       
-        circle.keyframes = [{
-          opacity: 0,
-          transform: "translate3d(" + 90 * i + "px, 0px, 0px)"
-        }, {
-          opacity: 1,
-          transform: "translate3d(" + 90 * i + "px, 200px, 0px)"
-        }, {
-          opacity: 0,
-          transform: "translate3d(" + 90 * i + "px, 0px, 0px)"
-        }];
-       
-        circle.animProps = {
-          duration: 1000 + 500 * i,
-          easing: "ease-out",
-          iterations: Infinity
-        }
-       
-        var animationPlayer = circle.animate(circle.keyframes, circle.animProps);
+  <head>
+    <title>Animate Multiple Elements</title>
+    <style>
+      .circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: none;
+        border: #fff 10px solid;
+        display: "inline-block";
+        position: absolute;
       }
-    })
-  </script>
-</head>
-<body>
-  <div id="mainContainer">
-       <div class="circle"></div>
-       <div class="circle"></div>
-       <div class="circle"></div>
-       <div class="circle"></div>
-       <div class="circle"></div>
-  </div>
-</body>
 
+      #mainContainer {
+        background-color: #cc6666;
+        width: 550px;
+        height: 350px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var circles = document.querySelectorAll(".circle");
+        for (var i = 0; i < 5; i++) {
+          var circle = circles[i];
+          animateCircles(circle);
+        }
+        function animateCircles(circle) {
+          var xMax = 500;
+          var yMax = 300;
+          circle.keyframes = [
+            {
+              opacity: 0,
+              transform:
+                "translate3d(" +
+                Math.random() * xMax +
+                "px, " +
+                Math.random() * yMax +
+                "px, 0px)",
+            },
+            {
+              opacity: 1,
+              transform:
+                "translate3d(" +
+                Math.random() * xMax +
+                "px, " +
+                Math.random() * yMax +
+                "px, 0px)",
+            },
+            {
+              opacity: 0,
+              transform:
+                "translate3d(" +
+                Math.random() * xMax +
+                "px, " +
+                Math.random() * yMax +
+                "px, 0px)",
+            },
+          ];
+          circle.animProps = {
+            duration: 1000 + Math.random() * 3000,
+            easing: "ease-out",
+            iterations: 1,
+          };
+          var animationPlayer = circle.animate(
+            circle.keyframes,
+            circle.animProps
+          );
+          addFinishHandler(animationPlayer, circle);
+        }
+
+        function addFinishHandler(anim, el) {
+          anim.addEventListener(
+            "finish",
+            function (e) {
+              animateCircles(el);
+            },
+            false
+          );
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="mainContainer">
+         
+      <div class="circle"></div>
+         
+      <div class="circle"></div>
+         
+      <div class="circle"></div>
+         
+      <div class="circle"></div>
+         
+      <div class="circle"></div>
+    </div>
+  </body>
 </html>
