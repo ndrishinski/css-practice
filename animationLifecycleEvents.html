@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animation Events</title>
+    <style>
+      @keyframes slide {
+        0% {
+          left: 0;
+        }
+        100% {
+          left: 400px;
+        }
+      }
+
+      body {
+        background-color: #ccc;
+        padding: 25px;
+      }
+      #main {
+        height: 330px;
+        width: 100%;
+      }
+      .pictureContainer {
+        border: 1px solid #cccccc;
+        display: block;
+        float: left;
+        height: 330px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .pictureContainer img {
+        position: relative;
+        top: 0px;
+        animation: slide 2s linear 2;
+      }
+    </style>
+    <meta content="getcomputedstyle, properties, value, css" name="keywords" />
+    <meta content="What the title says, yo!" name="description" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="pictureContainer">
+        <img
+          id="theimage"
+          src="https://www.kirupa.com/html5/examples/images/blue_pink.png"
+          height="660"
+          width="330"
+          alt="#"
+        />
+      </div>
+    </div>
+    <script>
+      const element = document.querySelector("#theimage");
+      element.addEventListener("animationstart", start);
+      element.addEventListener("animationiteration", iteration);
+      element.addEventListener("animationend", start);
+
+      function start(e) {
+        console.log("start: ", e);
+      }
+
+      function iteration(e) {
+        console.log("iteration: ", e);
+      }
+
+      function end(e) {
+        console.log("end: ", e);
+      }
+    </script>
+  </body>
+</html>
