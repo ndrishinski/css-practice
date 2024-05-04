@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Animate Text Color</title>
+    <style>
+      .container {
+        width: 100%;
+        height: 100px; /* Adjust height as needed */
+        overflow: hidden; /* Hide overflowing content */
+      }
+
+      .animated-text {
+        font-size: 48px; /* Adjust font size as needed */
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        color: transparent; /* Hide text */
+        background-image: linear-gradient(to right, blue, red); /* Gradient background */
+        -webkit-background-clip: text; /* Use text as mask for background */
+        background-clip: text;
+        animation: colorChange 5s linear infinite; /* Animation */
+      }
+
+      @keyframes colorChange {
+        0% {
+          background-position: 0% 50%; /* Start position */
+        }
+        100% {
+          background-position: 100% 50%; /* End position */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="animated-text">Your Text Here</h1>
+    </div>    
+  </body>
+</html>
