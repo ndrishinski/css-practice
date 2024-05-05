@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This vs Event in JS</title>
+  </head>
+  <body>
+    <div>
+      <p>Thing 1</p>
+      <p>Thing 2</p>
+      <p>Thing 3</p>
+      <p>Thing 4</p>
+    </div>
+    <script>
+      const div = document.querySelector('div')
+
+      div.addEventListener('click', function(e) {
+        console.log('first: ', e.target)
+        console.log('second: ', e.currentTarget)
+        console.log('third: ', this)
+        // e.currentTarget.style.background = 'green'
+        this.style.background = 'green'
+        e.target.style.background = 'blue'
+      })
+    </script>
+  </body>
+</html>

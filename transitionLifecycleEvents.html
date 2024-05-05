@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transition Lifecycle Events</title>
+    <style>
+      #blueCircle {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: blue;
+        top: 50px;
+        left: 50px;
+        position: absolute;
+        transition: all .5s ease-out;
+        opacity: .3;
+      }
+
+      #blueCircle:hover {
+        transform: scale(3);
+        opacity: 1;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="blueCircle"></div>
+    <script>
+      var blueCircle = document.querySelector("#blueCircle");
+ 
+      blueCircle.addEventListener("transitionend", detectTheEnd, false);
+
+      function detectTheEnd(e) {
+        console.log('detecting the end', e.propertyName)
+      }
+    </script>
+  </body>
+</html>
