@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restart Animation</title>
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .circle {
+        width: 100px;
+        height: 100px;
+        background-color: #d72638;
+        border-radius: 50%;
+
+        animation-name: scaleUp;
+        animation-iteration-count: 1;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-timing-function: cubic-bezier(0.17, 0.67, 0.32, 1.55);
+      }
+
+      @keyframes scaleUp {
+        0% {
+          transform: scale(3, 3);
+        }
+
+        50% {
+          transform: scale(-0.5, -0.5);
+        }
+
+        100% {
+          transform: scale(3, 3);
+        }
+      }
+
+      .container {
+        width: 500px;
+        height: 500px;
+        box-shadow: 0px 10px 20px #666;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background-color: #fffd98;
+        border-radius: 10px;
+        align-items: end;
+      }
+
+      #restartButton {
+        margin-bottom: 40px;
+        padding: 5px;
+        font-weight: bold;
+        border: none;
+        outline: 2px solid #0880ff;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+
+      #restartButton:hover {
+        outline-width: 5px;
+        background-color: #eaf4ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="circle"></div>
+      <button id="restartButton">Restart</button>
+    </div>
+    <script>
+      let restartButton = document.querySelector("#restartButton");
+      restartButton.addEventListener("click", restartAnimation, false);
+
+      function restartAnimation() {
+        let circle = document.querySelector(".circle");
+
+        circle.style.animationName = "none";
+
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            circle.style.animationName = "";
+          }, 0);
+        });
+      }
+    </script>
+  </body>
+</html>
