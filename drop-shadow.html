@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drop Shadow Animation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      div {
+        height: 200px;
+        width: 200px;
+        background: lightblue;
+        will-change: filter;
+
+        transition: filter 0.2s ease-out;
+      }
+
+      div:hover {
+        filter: drop-shadow(0px 0px 50px #333);
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
