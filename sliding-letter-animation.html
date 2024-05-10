@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sliding Letters</title>
+
+    <style>
+      body {
+        margin: 0px;
+        padding: 50px;
+      }
+
+      #container {
+        font-size: 0;
+        width: 380px;
+      }
+
+      .letterGroup {
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        border: #eee solid 1px;
+
+        background-color: yellow;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .letter {
+        background-color: azure;
+        margin-top: 0px;
+        user-select: none;
+
+        animation: slide 2s infinite ease-in-out;
+      }
+      .letter p {
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 100px;
+
+        padding: 0;
+        margin: 0;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-100px);
+        }
+        100% {
+          transform: translateY(-100px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="letterGroup">
+        <div class="letter">
+          <p>A</p>
+          <p>A</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>N</p>
+          <p>N</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>I</p>
+          <p>I</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>M</p>
+          <p>M</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>A</p>
+          <p>A</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>T</p>
+          <p>T</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>I</p>
+          <p>I</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>O</p>
+          <p>O</p>
+        </div>
+      </div>
+
+      <div class="letterGroup">
+        <div class="letter">
+          <p>N</p>
+          <p>N</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var letters = document.querySelectorAll(".letter");
+      var container = document.querySelector("#container");
+
+      var h_range = [0, 360];
+      var s_range = [0, 50];
+      var l_range = [60, 100];
+      var a_range = [1, 1];
+
+      function setup() {
+        for (var i = 0; i < letters.length; i++) {
+          var letter = letters[i];
+
+          var colorOne = getRandomColor(h_range, s_range, l_range, a_range);
+          var colorTwo = getRandomColor(h_range, s_range, l_range, a_range);
+
+          letter.color = {
+            one: colorOne,
+            two: colorTwo,
+          };
+
+          letter.children[0].style.backgroundColor = colorOne.hslaValue;
+          letter.children[1].style.backgroundColor = colorTwo.hslaValue;
+
+          letter.style.animationDelay = getRandomNumber(0, 500) / 500 + "s";
+          letter.style.animationDuration = getRandomNumber(20, 40) / 10 + "s";
+        }
+      }
+      setup();
+
+      container.addEventListener("animationiteration", loopLetter, false);
+
+      function loopLetter(e) {
+        var el = e.target;
+
+        var colorOne = el.color.two;
+        var colorTwo = getRandomColor(h_range, s_range, l_range, a_range);
+
+        el.color = {
+          one: colorOne,
+          two: colorTwo,
+        };
+
+        el.children[0].style.backgroundColor = colorOne.hslaValue;
+        el.children[1].style.backgroundColor = colorTwo.hslaValue;
+      }
+
+      function getRandomColor(h, s, l, a) {
+        var hue = getRandomNumber(h[0], h[1]);
+        var saturation = getRandomNumber(s[0], s[1]);
+        var lightness = getRandomNumber(l[0], l[1]);
+        var alpha = getRandomNumber(a[0] * 100, a[1] * 100) / 100;
+
+        return {
+          h: hue,
+          s: saturation,
+          l: lightness,
+          a: alpha,
+          hslaValue: getHSLAColor(hue, saturation, lightness, alpha),
+        };
+      }
+
+      function getRandomNumber(low, high) {
+        var r = Math.floor(Math.random() * (high - low + 1)) + low;
+        return r;
+      }
+
+      function getHSLAColor(h, s, l, a) {
+        return `hsl(${h}, ${s}%, ${l}%, ${a})`;
+      }
+    </script>
+  </body>
+</html>
