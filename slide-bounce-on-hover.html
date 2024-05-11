@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Slide using CSS3 Animations</title>
+    <style>
+      body {
+        background-color: #ccc;
+        padding: 25px;
+      }
+      #main {
+        height: 330px;
+        width: 330px;
+      }
+      .pictureContainer {
+        border: 1px solid #cccccc;
+        display: inline-block;
+        float: left;
+        height: 150px;
+        margin: 5px;
+        overflow: hidden;
+        width: 150px;
+      }
+
+      .pictureContainer img {
+        position: relative;
+        top: 0px;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      .pictureContainer img.slideIn {
+        animation-name: inKeyframes;
+      }
+      .pictureContainer img.slideOut {
+        animation-name: outKeyframes;
+      }
+
+      @keyframes inKeyframes {
+        70% {
+          top: -170px;
+        }
+        100% {
+          top: -150px;
+        }
+      }
+
+      @keyframes outKeyframes {
+        70% {
+          top: 20px;
+        }
+        100% {
+          top: 0px;
+        }
+      }
+    </style>
+    <meta content="css3, transition, image, slide" name="keywords" />
+    <meta content="What the title says, yo!" name="description" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="pictureContainer">
+        <img
+          class="theimage"
+          src="//www.kirupa.com/html5/examples/images/smiley.png"
+          height="300"
+          width="150"
+        />
+      </div>
+      <div class="pictureContainer">
+        <img
+          class="theimage"
+          src="//www.kirupa.com/html5/examples/images/tongue.png"
+          height="300"
+          width="150"
+        />
+      </div>
+      <div class="pictureContainer">
+        <img
+          class="theimage"
+          src="//www.kirupa.com/html5/examples/images/meh.png"
+          height="300"
+          width="150"
+        />
+      </div>
+      <div class="pictureContainer">
+        <img
+          class="theimage"
+          src="//www.kirupa.com/html5/examples/images/sad.png"
+          height="300"
+          width="150"
+        />
+      </div>
+    </div>
+    <script src="js/prefixfree.min.js"></script>
+    <script>
+      var images = document.getElementsByClassName("theimage");
+
+      for (var i = 0; i < images.length; i++) {
+        var image = images[i];
+        image.addEventListener("mouseover", addAnimationClass, false);
+        image.addEventListener("mouseout", removeAnimationClass, false);
+      }
+
+      var topPosition = null;
+
+      function addAnimationClass(e) {
+        var thisImage = e.target;
+
+        topPosition = getComputedStyle(thisImage).top;
+        thisImage.style.top = topPosition;
+
+        thisImage.className += " slideIn";
+        thisImage.className = thisImage.className.replace(" slideOut", "");
+      }
+
+      function removeAnimationClass(e) {
+        var thisImage = e.target;
+
+        topPosition = getComputedStyle(thisImage).top;
+        thisImage.style.top = topPosition;
+
+        thisImage.className += " slideOut";
+        thisImage.className = thisImage.className.replace(" slideIn", "");
+      }
+    </script>
+  </body>
+</html>
